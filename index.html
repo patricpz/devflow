@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFlow — Landing Pages, Sistemas & Apps de Alta Performance</title>
+  <meta name="description" content="Transformamos sua ideia em produtos digitais que convertem. Landing pages, sistemas web e aplicativos mobile com design premium e tecnologia de ponta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #000000;
+      --bg-card: #0a0a0a;
+      --bg-card-hover: #111111;
+      --border: rgba(139, 92, 246, 0.15);
+      --border-hover: rgba(139, 92, 246, 0.4);
+      --text: #e4e4e7;
+      --text-muted: #71717a;
+      --purple-400: #c4b5fd;
+      --purple-500: #a78bfa;
+      --purple-600: #9333ea;
+      --purple-700: #7c3aed;
+      --glow: rgba(139, 92, 246, 0.5);
+      --gradient-purple: linear-gradient(135deg, #7c3aed, #a78bfa, #c084fc);
+      --gradient-text: linear-gradient(135deg, #a78bfa, #e879f9);
+      --radius: 12px;
+      --radius-lg: 16px;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0 24px;
+      transition: background var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(0, 0, 0, 0.8);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      text-decoration: none;
+      color: #fff;
+      letter-spacing: -0.5px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .logo span {
+      color: var(--purple-500);
+      text-shadow: 0 0 20px var(--glow);
+    }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    .nav-cta {
+      padding: 10px 24px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: #fff !important;
+      transition: var(--transition);
+      font-size: 0.875rem;
+    }
+
+    .nav-cta:hover {
+      border-color: var(--purple-600);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+    }
+
+    .mobile-toggle {
+      display: block;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .mobile-menu {
+      display: none;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.95);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+    }
+
+    .mobile-menu.active { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .mobile-toggle { display: none; }
+    }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--gradient-text);
+      color: #fff;
+      box-shadow: 0 0 30px rgba(164, 122, 255, 0.3), inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 0 50px rgba(164, 122, 255, 0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--purple-600);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .arrow-right::after { content: "\2192"; transition: transform var(--transition); }
+    .btn:hover .arrow-right::after { transform: translateX(3px); }
+
+    /* ===== CONTAINER ===== */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== SECTION COMMON ===== */
+    .section { padding: 100px 0; }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--purple-400);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .section-label::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--purple-500);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--glow);
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .section-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.8125rem;
+      color: var(--purple-400);
+      font-weight: 500;
+      margin-bottom: 40px;
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+      50% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.125rem, 6vw, 3.75rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      background: var(--gradient-text);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      color: var(--text-muted);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    @media (min-width: 480px) {
+      .hero-buttons {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-number {
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .stat-number span { color: var(--purple-500); }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+      margin-top: 4px;
+    }
+
+    .hero-divider {
+      width: 100%;
+      max-width: 900px;
+      height: 1px;
+      margin: 0 auto;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+    }
+
+    /* ===== VALUE PROPOSITION ===== */
+    .value-grid {
+      display: grid;
+      gap: 32px;
+      grid-template-columns: 1fr;
+    }
+
+    .value-card {
+      padding: 40px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple-700), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .value-card:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+
+    .value-card:hover::before { opacity: 1; }
+
+    .value-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(139, 92, 246, 0.08);
+      border: 1px solid var(--border);
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
+
+    .value-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.3px;
+    }
+
+    .value-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 768px) {
+      .value-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ===== SERVICES ===== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .service-card {
+      padding: 36px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+    }
+
+    .service-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(180deg, rgba(139, 92, 246, 0.2), transparent);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1;
+    }
+
+    .service-card h3 {
+      font-size: 1.375rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+
+    .service-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .service-tags span {
+      padding: 4px 12px;
+      background: rgba(139, 92, 246, 0.06);
+      border: 1px solid rgba(139, 92, 246, 0.12);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      color: var(--purple-400);
+      font-weight: 500;
+    }
+
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ===== PROCESS ===== */
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      counter-reset: process;
+    }
+
+    .process-step {
+      padding: 0 24px 24px;
+      padding-left: 72px;
+      position: relative;
+      counter-increment: process;
+      min-height: 120px;
+    }
+
+    .process-step::before {
+      content: counter(process, decimal-leading-zero);
+      position: absolute;
+      left: 12px;
+      top: 0;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--purple-500);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(139, 92, 246, 0.05);
+    }
+
+    .process-step::after {
+      content: '';
+      position: absolute;
+      left: 29px;
+      top: 44px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .process-step:last-child::after { display: none; }
+
+    .process-step h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+
+    @media (min-width: 768px) {
+      .process-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+
+      .process-step {
+        padding: 40px 24px;
+        padding-left: 24px;
+        position: static;
+        min-height: auto;
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        background: var(--bg-card);
+      }
+
+      .process-step::before {
+        position: static;
+        margin-bottom: 16px;
+        width: 42px;
+        height: 42px;
+        font-size: 0.875rem;
+      }
+
+      .process-step::after { display: none; }
+    }
+
+    /* ===== PORTFOLIO ===== */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .portfolio-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+
+    .portfolio-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #111, #1a1a2e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portfolio-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,
+        rgba(139, 92, 246, 0.1),
+        rgba(236, 72, 153, 0.05));
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .portfolio-card:hover .portfolio-image::before { opacity: 1; }
+
+    .portfolio-mockup {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    /* Different mockup colors for each card */
+    .portfolio-card:nth-child(1) .portfolio-image {
+      background: linear-gradient(135deg, #0c0a1f 0%, #1a1145 50%, #0c0a1f 100%);
+    }
+    .portfolio-card:nth-child(2) .portfolio-image {
+      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+    }
+    .portfolio-card:nth-child(3) .portfolio-image {
+      background: linear-gradient(135deg, #1a0a2e 0%, #2d1b69 50%, #1a0a2e 100%);
+    }
+    .portfolio-card:nth-child(4) .portfolio-image {
+      background: linear-gradient(135deg, #0a0f1a 0%, #172554 50%, #0a0f1a 100%);
+    }
+
+    /* Mini layout mockup inside portfolio images */
+    .mockup-browser {
+      width: 80%;
+      max-width: 280px;
+      background: rgba(0,0,0,0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .mockup-topbar {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 8px 12px;
+      background: rgba(255,255,255,0.03);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .mockup-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+    }
+
+    .mockup-url {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 3px;
+      margin-left: 8px;
+    }
+
+    .mockup-body {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .mockup-line {
+      height: 4px;
+      background: rgba(139, 92, 246, 0.15);
+      border-radius: 2px;
+    }
+
+    .mockup-line:nth-child(1) { width: 60%; }
+    .mockup-line:nth-child(2) { width: 90%; opacity: 0.5; }
+    .mockup-line:nth-child(3) { width: 40%; }
+    .mockup-line:nth-child(4) { width: 70%; opacity: 0.3; }
+
+    .portfolio-info { padding: 24px; }
+
+    .portfolio-type {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--purple-500);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-info h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .portfolio-info p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    /* ===== TESTIMONIALS ===== */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .testimonial-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      transition: all var(--transition);
+    }
+
+    .testimonial-card:hover {
+      border-color: var(--border-hover);
+    }
+
+    .testimonial-stars {
+      color: #e5c07b;
+      font-size: 0.875rem;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+
+    .testimonial-text {
+      color: var(--text);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--purple-700), #6366f1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .testimonial-role {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ===== FINAL CTA ===== */
+    .cta-section {
+      padding: 100px 0 120px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-box {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 32px;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.05), rgba(255,255,255,0.01));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 24px;
+      padding: 1px;
+      background: linear-gradient(135deg, var(--purple-700), transparent, var(--purple-700));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .cta-box p {
+      color: var(--text-muted);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.8125rem;
+      transition: color var(--transition);
+    }
+
+    .footer-links a:hover { color: var(--purple-400); }
+
+    @media (min-width: 768px) {
+      .footer-inner { flex-direction: row; justify-content: space-between; }
+    }
+
+    /* ===== LOGOS SECTION ===== */
+    .logos-section { padding: 40px 0 0; }
+    .logos-label {
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    .logos-track {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .logo-item {
+      font-weight: 700;
+      color: rgba(255,255,255,0.15);
+      font-size: 1.25rem;
+      letter-spacing: -0.5px;
+      user-select: none;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    .animate-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .animate-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .animate-in:nth-child(2) { transition-delay: 0.1s; }
+    .animate-in:nth-child(3) { transition-delay: 0.2s; }
+    .animate-in:nth-child(4) { transition-delay: 0.3s; }
+    .animate-in:nth-child(5) { transition-delay: 0.35s; }
+    .animate-in:nth-child(6) { transition-delay: 0.4s; }
+
+    /* ===== GLOW DECORATIONS ===== */
+    .glow-left, .glow-right {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(120px);
+      opacity: 0.15;
+    }
+
+    .glow-left { background: #7c3aed; }
+    .glow-right { background: #ec4899; }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="navbar-inner">
+      <a href="#" class="logo">Dev<span>Flow</span></a>
+      <ul class="nav-links">
+        <li><a href="#value">Por que DevFlow</a></li>
+        <li><a href="#services">Servi&ccedil;os</a></li>
+        <li><a href="#process">Processo</a></li>
+        <!-- <li><a href="#portfolio">Portf&oacute;lio</a></li>
+        <li><a href="#testimonials">Depoimentos</a></li> -->
+        <li><a href="#cta" class="nav-cta">Fale Conosco</a></li>
+      </ul>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#value" class="mobile-link">Por que DevFlow</a>
+      <a href="#services" class="mobile-link">Serviços</a>
+      <a href="#process" class="mobile-link">Processo</a>
+      <!-- <a href="#portfolio" class="mobile-link">Portfólio</a>
+      <a href="#testimonials" class="mobile-link">Depoimentos</a> -->
+      <a href="#cta" class="mobile-link" style="color: var(--purple-400);">Fale Conosco</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Vagas limitadas para novos projetos em Maio
+        </div>
+        <h1>Criamos produtos digitais que <em>geram resultado.</em></h1>
+        <p class="hero-description">
+          Landing pages de alta conversão, sistemas web robustos e apps mobile com design premium — do conceito ao lançamento com performance e precisão.
+        </p>
+        <div class="hero-buttons">
+          <a href="#cta" class="btn btn-primary">Comece seu projeto <span class="arrow-right"></span></a>
+          <!-- <a href="#portfolio" class="btn btn-outline">Ver portfólio</a> -->
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">60<span>+</span></div>
+            <div class="stat-label">Projetos entregues</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">98<span>%</span></div>
+            <div class="stat-label">Satisfação</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">3.2<span>x</span></div>
+            <div class="stat-label">ROI médio</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hero-divider"></div>
+
+  <!-- LOGOS -->
+  <!-- <div class="logos-section">
+    <div class="container">
+      <p class="logos-label">Empresas que confiam na DevFlow</p>
+      <div class="logos-track">
+        <span class="logo-item">NEXTER</span>
+        <span class="logo-item">VOLTZ</span>
+        <span class="logo-item">KAIROS</span>
+        <span class="logo-item">ORBITAL</span>
+        <span class="logo-item">SYNERA</span>
+        <span class="logo-item">PULSAR</span>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- VALUE PROPOSITION -->
+  <section class="section" id="value">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Por que DevFlow</div>
+        <h2 class="section-title">N&atilde;o fazemos apenas sites.<br>Criamos m&aacute;quinas de convers&atilde;o.</h2>
+        <p class="section-subtitle">
+          Cada pixel, cada linha de c&oacute;digo e cada segundo de carregamento s&atilde;o otimizados para gerar impacto real no seu neg&oacute;cio.
+        </p>
+      </div>
+      <div class="value-grid">
+        <div class="value-card animate-in">
+          <div class="value-icon">&#9889;</div>
+          <h3>Velocidade absurdas</h3>
+          <p>Entregas 40% mais rápidas que o mercado sem abrir mão da qualidade. Seu projeto online em semanas, não em meses.</p>
+        </div>
+        <div class="value-card animate-in">
+          <div class="value-icon">&#9670;</div>
+          <h3>Design que vende</h3>
+          <p>Interfaces pensadas com base em psicologia do consumidor e UX patterns que guiam o usuário direto para a conversão.</p>
+        </div>
+        <div class="value-card animate-in">
+          <div class="value-icon">&#9881;</div>
+          <h3>Tecnologia de ponta</h3>
+          <p>Stack moderno, código limpo, arquitetura escalável. Tecnologia que acompanha o crescimento do seu negócio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="section" id="services" style="padding-top:0">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Serviços</div>
+        <h2 class="section-title">O que podemos criar<br>para voc&ecirc;?</h2>
+        <p class="section-subtitle">Do conceito ao deploy — cuidamos de tudo para que seu produto digital seja excepcional.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card animate-in">
+          <div class="service-number">01</div>
+          <div>
+            <h3>Landing Pages</h3>
+            <p>Páginas estratégicas otimizadas para conversão, com copy persuasiva, design premium e performance máxima.</p>
+          </div>
+          <div class="service-tags">
+            <span>Copywriting</span>
+            <span>A/B Testing</span>
+            <span>Analytics</span>
+          </div>
+        </div>
+        <div class="service-card animate-in">
+          <div class="service-number">02</div>
+          <div>
+            <h3>Sistemas Web</h3>
+            <p>Plataformas completas com dashboards, gestão, automações e integrações — tudo sob medida para sua operação.</p>
+          </div>
+          <div class="service-tags">
+            <span>SaaS</span>
+            <span>Dashboards</span>
+            <span>APIs</span>
+            <span>CRMs</span>
+          </div>
+        </div>
+        <div class="service-card animate-in">
+          <div class="service-number">03</div>
+          <div>
+            <h3>Apps Mobile</h3>
+            <p>Aplicativos nativos e cross-platform com interfaces fluidas, notificações inteligentes e experiência impecável.</p>
+          </div>
+          <div class="service-tags">
+            <span>React Native</span>
+            <span>iOS</span>
+            <span>Android</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="section" id="process" style="padding-top:0">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Processo</div>
+        <h2 class="section-title">Do briefing ao launch<br>em 4 etapas.</h2>
+        <p class="section-subtitle">Um fluxo transparente e eficiente que elimina ruído, reduz prazo e entrega exatamente o que você precisa.</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-step animate-in">
+          <h3>Descoberta</h3>
+          <p>Entendemos seu negócio, seus objetivos, seu público e suas métricas de sucesso para desenhar a estratégia ideal.</p>
+        </div>
+        <div class="process-step animate-in">
+          <h3>Design & UX</h3>
+          <p>Criamos wireframes e protótipos de alta fidelidade com design system customizado, garantindo aprovação antes do código.</p>
+        </div>
+        <div class="process-step animate-in">
+          <h3>Desenvolvimento</h3>
+          <p>Código limpo, componentes reutilizáveis, testes automatizados e sprints semanais com updates transparentes.</p>
+        </div>
+        <div class="process-step animate-in">
+          <h3>Lançamento</h3>
+          <p>Deploy otimizado, monitoramento de performance, configurações de SEO e analytics prontos para escalar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <!-- <section class="section" id="portfolio" style="padding-top:0">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Portfólio</div>
+        <h2 class="section-title">Projetos que falam<br>por n&oacute;s.</h2>
+        <p class="section-subtitle">Cada projeto é uma história de transformação digital. Conheça alguns dos nossos trabalhos mais recentes.</p>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-card animate-in">
+          <div class="portfolio-image">
+            <div class="mockup-browser">
+              <div class="mockup-topbar">
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-url"></span>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line"></div>
+                <div class="mockup-line"></div>
+                <div class="mockup-line"></div>
+                <div class="mockup-line"></div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-type">Landing Page</div>
+            <h3>Nexter — Plataforma FinTech</h3>
+            <p>Landing page de lançamento com +12% de conversão e 0.8s de carregamento.</p>
+          </div>
+        </div>
+        <div class="portfolio-card animate-in">
+          <div class="portfolio-image">
+            <div class="mockup-browser">
+              <div class="mockup-topbar">
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-url"></span>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line" style="width:80%"></div>
+                <div class="mockup-line" style="width:45%;opacity:0.3"></div>
+                <div class="mockup-line" style="width:65%;opacity:0.6"></div>
+                <div class="mockup-line" style="width:55%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-type">Sistema Web</div>
+            <h3>Voltz — Gestão de Energia</h3>
+            <p>Dashboard completo para monitoramento de consumo em tempo real com +200 usuários ativos.</p>
+          </div>
+        </div>
+        <div class="portfolio-card animate-in">
+          <div class="portfolio-image">
+            <div class="mockup-browser">
+              <div class="mockup-topbar">
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-url"></span>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line" style="width:50%"></div>
+                <div class="mockup-line" style="width:75%;opacity:0.4"></div>
+                <div class="mockup-line" style="width:60%;opacity:0.7"></div>
+                <div class="mockup-line" style="width:85%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-type">App Mobile</div>
+            <h3>Kairos — Agenda Inteligente</h3>
+            <p>App de agendamento com IA para otimização de horários. +5.000 downloads em 30 dias.</p>
+          </div>
+        </div>
+        <div class="portfolio-card animate-in">
+          <div class="portfolio-image">
+            <div class="mockup-browser">
+              <div class="mockup-topbar">
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-dot"></span>
+                <span class="mockup-url"></span>
+              </div>
+              <div class="mockup-body">
+                <div class="mockup-line" style="width:40%"></div>
+                <div class="mockup-line" style="width:90%;opacity:0.4"></div>
+                <div class="mockup-line" style="width:75%;opacity:0.6"></div>
+                <div class="mockup-line" style="width:50%"></div>
+              </div>
+            </div>
+          </div>
+          <div class="portfolio-info">
+            <div class="portfolio-type">Sistema Web</div>
+            <h3>Orbital — E-commerce B2B</h3>
+            <p>Plataforma de vendas B2B com catálogo dinâmico, integrações ERP e faturamento R$2M+.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- TESTIMONIALS -->
+  <!-- <section class="section" id="testimonials" style="padding-top:0">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">Depoimentos</div>
+        <h2 class="section-title">O que dizem sobre a DevFlow</h2>
+        <p class="section-subtitle">Nossos clientes são nossos melhores cases. Veja o feedback real de quem já viveu a experiência DevFlow.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card animate-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"A DevFlow entregou nossa landing page em apenas 12 dias e a taxa de conversão dobrou. O design é absurdo de bom. Recomendo de olhos fechados."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">RL</div>
+            <div>
+              <div class="testimonial-name">Rafael Lima</div>
+              <div class="testimonial-role">CEO — Nexter</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Nosso sistema de gestão era uma bagunça. A DevFlow reescreveu tudo do zero e hoje rodamos a operação inteira na plataforma. Zero downtime em 8 meses."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MC</div>
+            <div>
+              <div class="testimonial-name">Marina Costa</div>
+              <div class="testimonial-role">COO — Voltz</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card animate-in">
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <p class="testimonial-text">"Profissionalismo de outro nível. Comunicação impecável, prazos respeitados e o resultado final superou nossas expectativas em tudo. Parceria definitiva."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">TS</div>
+            <div>
+              <div class="testimonial-name">Thiago Santos</div>
+              <div class="testimonial-role">CTO — Orbital</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+  <!-- FINAL CTA -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <div class="cta-box">
+        <div class="section-label" style="justify-content:center">Pronto</div>
+        <h2>Bora tirar seu projeto<br>do <span style="background:var(--gradient-text);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">papel</span>?</h2>
+        <p>Conte sua ideia e receba uma proposta personalizada em at&eacute; 24 horas. Sem compromisso, sem enrolação.</p>
+        <a href="https://www.instagram.com/devflow_/" target="_blank" rel="noopener" class="btn btn-primary" style="font-size:1rem;padding:16px 40px;">
+          Chamar no Instagram &#10148;
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="footer-copy">&copy; 2026 DevFlow. Todos os direitos reservados.</p>
+      <ul class="footer-links">
+        <li><a href="#">Termos</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="mailto:contato@devflow.com.br">contato@devflow.com.br</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const currentScroll = window.pageYOffset;
+      navbar.classList.toggle('scrolled', currentScroll > 20);
+      lastScroll = currentScroll;
+    }, { passive: true });
+
+    // Mobile menu toggle
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+
+    // Scroll animations
+    const animateElements = document.querySelectorAll('.animate-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    animateElements.forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          const offset = 80;
+          const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Counter animation for hero stats
+    function animateCounters() {
+      const stats = document.querySelectorAll('.stat-number');
+      stats.forEach(stat => {
+        const text = stat.textContent;
+        const numMatch = text.match(/[\d.]+/);
+        if (!numMatch) return;
+        const target = parseFloat(numMatch[0]);
+        const suffix = text.replace(numMatch[0], '');
+        let current = 0;
+        const increment = target / 60;
+        const step = () => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            stat.innerHTML = stat.dataset.original;
+            return;
+          }
+          const display = Number.isInteger(target) ? Math.floor(current) : current.toFixed(1);
+          stat.innerHTML = display + suffix;
+          requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      });
+    }
+
+    // Store original stat HTML
+    document.querySelectorAll('.stat-number').forEach(el => {
+      el.dataset.original = el.innerHTML;
+    });
+
+    // Run counter animation when hero is visible
+    const heroObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        animateCounters();
+        heroObserver.disconnect();
+      }
+    }, { threshold: 0.3 });
+    heroObserver.observe(document.querySelector('.hero'));
+  </script>
+</body>
+</html>
